@@ -10,7 +10,7 @@
     <button class='reset'>Reset</button>
   </div>
   <div class='controls'>
-    <button class='wait'>🛑 Wait</button>
+    <button class='sleep'>🛑 Wait</button>
   </div>
   <div>
     <input placeholder='Take a note...'>
@@ -26,12 +26,11 @@
   const resetButton = document.querySelector('.reset');
   const incrementButton = document.querySelector('.increment');
   const decrementButton = document.querySelector('.decrement');
-  const waitButton = document.querySelector('.wait');
+  const sleepButton = document.querySelector('.sleep');
   const clock = document.querySelector('.clock');
   const noteInput = document.querySelector('input');
   const saveNoteButton = document.querySelector('.save-note-button');
   const notes = document.querySelector('.notes');
-
 
   // State
   let initialTimeInMs = 10000; // 10 seconds
@@ -66,8 +65,7 @@
   function start() { interval = setInterval(updateTimer, updateRate) }
   function stop() { clearInterval(interval); interval = null; }
 
-
-  function wait(timeInMs) {
+  function sleep(timeInMs) {
     const startTime = Date.now();
     const endTime = Date.now() + timeInMs;
     while (Date.now() < endTime) {
@@ -75,9 +73,9 @@
     }
   }
 
-  function wait10Sec() {
-    console.log('Gonna wait 10 seconds.');
-    wait(10000);
+  function sleep10Sec() {
+    console.log('Gonna sleep 10 seconds.');
+    sleep(10000);
     console.log('Waited 10 seconds.');
   }
 
@@ -92,7 +90,7 @@
   resetButton.addEventListener('click', reset);
   incrementButton.addEventListener('click', increment);
   decrementButton.addEventListener('click', decrement);
-  waitButton.addEventListener('click', wait10Sec);
+  sleepButton.addEventListener('click', sleep10Sec);
   saveNoteButton.addEventListener('click', saveNote);
   setInterval(() => { clock.textContent = new Date().toLocaleString() }, 100)
 

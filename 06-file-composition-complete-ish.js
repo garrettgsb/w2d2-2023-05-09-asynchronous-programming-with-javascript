@@ -2,16 +2,16 @@ const fs = require('fs');
 
 // Run this five times... Notice any difference?
 
-fs.readFile('./female-first-names-en-dataset.json', { encoding: 'utf8' }, (err, data) => doTheThing('fNames', JSON.parse(data)));
-fs.readFile('./male-first-names-en-dataset.json', { encoding: 'utf8' }, (err, data) => doTheThing('mNames', JSON.parse(data)));
-fs.readFile('./1000-most-common-surnames.txt', { encoding: 'utf8' }, (err, data) => doTheThing('surnames', data.split(',\n')));
+fs.readFile('./female-first-names-en-dataset.json', { encoding: 'utf8' }, (err, data) => loadNames('fNames', JSON.parse(data)));
+fs.readFile('./male-first-names-en-dataset.json', { encoding: 'utf8' }, (err, data) => loadNames('mNames', JSON.parse(data)));
+fs.readFile('./1000-most-common-surnames.txt', { encoding: 'utf8' }, (err, data) => loadNames('surnames', data.split(',\n')));
 
 const names = {
   mNames: undefined,
   fNames: undefined,
   surnames: undefined,
 };
-function doTheThing(key, arr) {
+function loadNames(key, arr) {
   names[key] = arr;
   if (Object.values(names).includes(undefined)) return;
   generateName();
